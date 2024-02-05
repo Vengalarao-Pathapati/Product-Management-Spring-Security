@@ -1,0 +1,80 @@
+<!--<app-navbar></app-navbar>-->
+<head>
+ 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+    <mat-sidenav-container>
+    
+        <mat-sidenav mode="side" [(opened)]="opened" class="bg-secondary">
+            <div class="side">
+                 
+            
+            
+            <!--<a class="closebtn" (click)="closeNav()">&times;</a><br>-->
+            <a (click)="dashboard()" style="font-family: Georgia, 'Times New Roman', Times, serif;padding-top: 100px;"><i class="fa fa-user-circle-o" aria-hidden="true"></i> User dashboard</a><br>
+            <a (click)="productlist()" style="font-family: Georgia, 'Times New Roman', Times, serif;"><i class="fa fa-list-ol" aria-hidden="true"></i> Product List</a><br>
+            <a (click)="addproduct()" style="font-family: Georgia, 'Times New Roman', Times, serif;"><i class="fa fa-plus"aria-hidden="true"></i> Add a Product</a><br>
+            <a (click)="handleLogout()"><i class="fa fa-user-times" aria-hidden="true"></i> Logout</a>
+            </div>
+        </mat-sidenav>
+        
+        <mat-sidenav-content>
+            <!--<span style="font-size:30px;cursor:pointer;color: aliceblue;" (click)="openNav()">&#9776;</span>-->
+            <body class="bg">
+                <nav class="navbar navbar-expand-md     bg-secondary">
+                    <button (click)="opened=!opened"><span style="font-size:30px;cursor:pointer;color: rgb(17, 16, 16);">&#9776;</span>
+                    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label class="logo" style="display: inline;" ><img src="https://www.prodapt.com/wp-content/uploads/New-Prodapt_Slightly-Bigger-Version.png" width="300" height="50" alt="prodapt" ></label>
+
+    <div><h1 class="an" style="padding-left: 140px;">Product Management System</h1></div>
+    <div class="dropdown">
+        <button class="dropbtn" ><i class="fa fa-ellipsis-v fa-lg" aria-hidden="true"></i>
+        </button>
+        <div class="dropdown-content">
+            <a class="nav-link" (click)="dashboard()" style="cursor: pointer;"><i class="fa fa-id-card-o" aria-hidden="true"></i>
+                Dashboard</a>
+
+            <a *ngIf="isLoggedIn" class="nav-link" (click)=handleLogout() style="cursor: pointer;"><i class="fa fa-user-times" aria-hidden="true"></i>Logout</a>
+           
+        </div>
+      </div>
+                </nav>
+             
+    
+           
+                <div style="padding-left: 550px;">
+                    <img src="https://logodix.com/logo/1707088.png" id="image1">
+                </div>
+                <h2
+                    style="color: rgb(250, 3, 3);text-align: center;font-weight: bold;font-family: Georgia, 'Times New Roman', Times, serif;">
+                    Welcome to user dashboard</h2>
+                <div style="padding-top: 50px;padding-left: 300px;" class="but1">
+    
+                    <label class="btn-light"
+                        style="padding: 15px 100px;border-radius: 10px;cursor: pointer;font-weight: bold;font-size: large;font-family: Georgia, 'Times New Roman', Times, serif;"
+                        (click)="productlist()">Product List <i class="fa fa-angle-right" aria-hidden="true"></i></label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label class="btn-light"
+                        style="padding: 15px 65px;border-radius: 10px;cursor: pointer;font-weight: bold;font-size: large;font-family: Georgia, 'Times New Roman', Times, serif;"
+                        (click)="addproduct()">Add or Create Product <i class="fa fa-plus"></i></label>
+    
+                </div>
+                <div style="padding-top: 100px;padding-left: 400px;" class="but1">
+                </div>
+                
+            </body>
+            
+        </mat-sidenav-content>
+    
+    
+    </mat-sidenav-container>
+
+
+
+
+
+
+
+
+

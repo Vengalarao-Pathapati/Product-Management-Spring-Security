@@ -1,0 +1,16 @@
+.btn{
+    
+    background-color: rgb(6, 41, 235);
+    border: 3px solid #fffb05;
+    color: #fcf9f9;
+    cursor: pointer;
+    border-radius: 50px;
+     
+  }
+
+  .bg{
+    background-image: url('https://c4.wallpaperflare.com/wallpaper/429/718/350/simple-background-technology-robot-artificial-intelligence-wallpaper-preview.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+  }

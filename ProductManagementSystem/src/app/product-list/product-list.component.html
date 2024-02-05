@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!--<app-navbar></app-navbar>-->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <script type="text/javascript">
+    window.history.forward();
+    function noBack() {
+        window.history.forward();
+    }
+</script>
+   
+
+</head>
+
+<mat-sidenav-container>
+    
+  <mat-sidenav mode="side" [(opened)]="opened" class="bg-secondary">
+      <div class="side">
+           
+      
+      
+      <!--<a class="closebtn" (click)="closeNav()">&times;</a><br>-->
+      <a (click)="dashboard()" style="font-family: Georgia, 'Times New Roman', Times, serif;padding-top: 100px;"><i class="fa fa-user-circle-o" aria-hidden="true"></i> User dashboard</a><br>
+      <a (click)="productlist()" style="font-family: Georgia, 'Times New Roman', Times, serif;"><i class="fa fa-list-ol" aria-hidden="true"></i> Product List</a><br>
+      <a (click)="addproduct()" style="font-family: Georgia, 'Times New Roman', Times, serif;"><i class="fa fa-plus"aria-hidden="true"></i> Add a Product</a><br>
+      <a (click)="handleLogout()"><i class="fa fa-user-times" aria-hidden="true"></i> Logout</a>
+      </div>
+  </mat-sidenav>
+  
+  <mat-sidenav-content>
+      <!--<span style="font-size:30px;cursor:pointer;color: aliceblue;" (click)="openNav()">&#9776;</span>-->
+      <body class="con" style="font-family: 'Times New Roman', Times, serif;">
+          <nav class="navbar navbar-expand-md  bg-secondary">
+              <button (click)="opened=!opened"><span style="font-size:30px;cursor:pointer;color: rgb(17, 16, 16);">&#9776;</span>
+              </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <label class="logo" style="display: inline;" ><img src="https://www.prodapt.com/wp-content/uploads/New-Prodapt_Slightly-Bigger-Version.png" width="300" height="50" alt="prodapt" ></label>
+
+<div ><h1 style="color: aliceblue;padding-left: 120px;font-family: Georgia, 'Times New Roman', Times, serif;font-weight: bold;">Product Management System</h1></div>
+<div class="dropdown">
+  <button class="dropbtn" ><i class="fa fa-ellipsis-v fa-lg" aria-hidden="true"></i>
+  </button>
+  <div class="dropdown-content">
+      <a class="nav-link" (click)="dashboard()" style="cursor: pointer;"><i class="fa fa-id-card-o" aria-hidden="true"></i>
+          Dashboard</a>
+
+      <a *ngIf="isLoggedIn" class="nav-link" (click)=handleLogout() style="cursor: pointer;"><i class="fa fa-user-times" aria-hidden="true"></i>Logout</a>
+     
+  </div>
+</div>
+          </nav>
+          
+   
+
+            <br>
+            <div  *ngIf="isLoggedIn">
+          
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              <input type="button" *ngIf="isLoggedIn"  value="Add or create a product" (click)="addproduct()"class="btn-primary" style="border-radius: 10px;padding: 10px;font-weight: bold;">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 
+               
+                 
+               <!--<button (click)="logout()" class="btn" style="border-radius: 50px;">Logout</button>-->
+               
+              <!--<button *ngIf="isLoggedIn" class="nav-link" href="logout" (click)=handleLogout()   class="btn-warning" style="border-radius: 10px;padding: 10px;font-weight: bold;">Logout</button>-->
+              <h1 style="text-align: center;" *ngIf="isLoggedIn">Products List</h1>
+          
+          
+              <table class="table table-striped" style="text-align: center;"  >
+                <thead *ngIf="isLoggedIn">
+                  <tr>
+                    <th>Product id</th>
+                    <th>Product Name</th>
+                    <th>Product Price</th>
+                    <th>Product Rating</th>
+                    <th>Date</th>
+                    <th>Availability</th>
+                     
+                    <th>Actions</th>
+                    
+                  </tr>
+                </thead>
+                <tbody style="text-align: center;">
+                  <tr *ngFor="let Products of products">
+                    <td >{{Products.file_id}}</td>
+                    <td >{{Products.productname}}</td>
+                    <td >{{Products.productprice}}</td>
+                    <td >{{Products.productquality}}</td>
+                    <td >{{Products.date}}</td>
+                    <td >{{Products.status}}</td>
+                    
+                     
+                    <td>
+                      <button (click)="updateProduct(Products.file_id)" class="btn-primary" style="border-radius: 10px;padding: 5px;">Update</button>&nbsp;
+                      <!--<button onclick="return confirm('Are you sure you want to delete this item')==false" (click)="deleteProduct(Products.id)" class="btn">Delete
+                      <a  title="delete" class="delete" style="color: aliceblue;" >Delete</a>
+                      
+                      </button>-->
+                      <!--<button onclick="result()">Delete</button>-->
+                       
+          
+                      <button (click)="deleteProduct(Products.file_id)" class="btn-primary" style="border-radius: 10px;padding: 5px;">Delete</button>
+           
+                      <!--<button class="openModal" onclick="document.querySelector('.modal').style.display='block'">Delete</button>
+                         <div class="modal">
+                          <div class="modalContent">
+                            <span class="close">×</span>
+                            <p>Are you sure you want to delete your product</p>
+                            <button class="del" (click)="deleteProduct(Products.id)">Delete</button>
+                            <button class="cancel" onclick="hideModal()">Cancel</button>
+                          </div>
+                        </div>
+                        <script>
+                          var modal = document.querySelector(".modal");
+                          var btn = document.querySelector(".openModal");
+                          var span = document.querySelector(".close");
+                          btn.addEventListener("click", () => {
+                            modal.style.display = "block";
+                          });
+                          span.addEventListener("click", () => {
+                            hideModal();
+                          });
+                          function hideModal() {
+                            modal.style.display = "none";
+                          }
+                          window.onclick = function (event) {
+                            if (event.target == modal) {
+                              hideModal();
+                            }
+                          };
+                        </script>-->
+          
+                    </td>
+                    
+          
+                  </tr>
+                </tbody>
+              </table>
+          
+          
+            </div>
+          
+          
+          </body>
+          
+           
+       
+
+     
+      
+      
+  </mat-sidenav-content>
+
+
+</mat-sidenav-container>
+
+

@@ -1,0 +1,151 @@
+.btn{
+ border: 2px solid #f8fbfc;
+    color: rgb(250, 246, 246);
+    
+    font-size: 18px;
+    cursor: pointer;
+    margin: 15px;
+    
+  }
+ .btn1{
+  border: 2px solid #f8fbfc;
+    color: rgb(250, 246, 246);
+     
+    font-size: 18px;
+    cursor: pointer;
+    
+
+    
+     }
+  .bg{
+    background-image: url('https://pubnative.net/wp-content/uploads/2019/08/PubNative-Web-Background-Design.png');
+    height: 110vh;
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .form
+  .form-group{
+    padding-left: 100px;
+     
+  }
+
+  mat-sidenav-container{
+    height: 100%;
+  }
+  mat-sidenav{
+    height: 100%;
+    z-index: 1;
+    width: 0;
+     
+     background-color: rgb(114, 111, 111);
+      
+    
+    
+    padding: 16px;
+  }
+  mat-sidenav{
+    
+    width: 250px;
+  }
+  .sidenav {
+    height: 100%;
+  
+     overflow-x: hidden;
+     
+    position: fixed;
+    float: left;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(14, 13, 13);
+     
+    transition: 0.5s;
+    padding-top: 60px;
+    margin-top: 70px;
+    
+  }
+  
+  .side a {
+    font-weight: bold;
+      
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #fcfbfa;
+    display: block;
+    transition: 0.3s;
+    cursor: pointer;
+     
+    
+    
+  }
+  
+  .side a:hover {
+    color: #fa7406;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;   }
+    .side a {font-size: 18px; }
+  }
+
+  .dropbtn {
+    background: none;
+    color: white;
+    padding: 15px 10px;
+    font-size: 16px;
+    border: none;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: block;
+    padding-left: 650px;
+     
+  }
+  
+  .dropdown-content {
+    display: none;
+     position: fixed;
+    background-color: #f1f1f1;
+    min-width: 20px;
+    box-shadow: 0px 8px 16px 0px rgba(204, 9, 9, 0.2);
+    
+    
+     
+    left: auto;
+    right: -0.5%;
+    
+    
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 15px 30px;
+    text-decoration: none;
+   
+    width: 100%;
+  }
+  
+  .dropdown-content a:hover {background-color: rgb(235, 118, 225); color: #f1f1f1;font-weight:bolder;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+
+  .upload-response {
+    overflow-x: hidden;
+    font-weight: bold;
+    word-break: break-all;
+    padding-left: 500px;
+}
+
+

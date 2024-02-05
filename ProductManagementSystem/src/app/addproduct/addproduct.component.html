@@ -1,0 +1,251 @@
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<mat-sidenav-container>
+
+    <mat-sidenav mode="side" [(opened)]="opened" class="bg-secondary">
+        <div class="side">
+
+
+
+            <!--<a class="closebtn" (click)="closeNav()">&times;</a><br>-->
+            <a (click)="dashboard()"
+                style="font-family: Georgia, 'Times New Roman', Times, serif;padding-top: 100px;"><i
+                    class="fa fa-user-circle-o" aria-hidden="true"></i> User dashboard</a><br>
+            <a (click)="productlist()" style="font-family: Georgia, 'Times New Roman', Times, serif;"><i
+                    class="fa fa-list-ol" aria-hidden="true"></i> Product List</a><br>
+            <a (click)="addproduct()" style="font-family: Georgia, 'Times New Roman', Times, serif;"><i
+                    class="fa fa-plus" aria-hidden="true"></i> Add a Product</a><br>
+            <a (click)="handleLogout()"><i class="fa fa-user-times" aria-hidden="true"></i> Logout</a>
+        </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <!--<span style="font-size:30px;cursor:pointer;color: aliceblue;" (click)="openNav()">&#9776;</span>-->
+
+        <body class="bg" *ngIf="isLoggedIn" style="font-family: 'Times New Roman', Times, serif;">
+            <nav class="navbar navbar-expand-md      bg-secondary">
+                <button (click)="opened=!opened"><span
+                        style="font-size:30px;cursor:pointer;color: rgb(17, 16, 16);">&#9776;</span>
+                </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label class="logo" style="display: inline;"><img
+                        src="https://www.prodapt.com/wp-content/uploads/New-Prodapt_Slightly-Bigger-Version.png"
+                        width="300" height="50" alt="prodapt"></label>
+
+                <div style="text-align: center;">
+                    <h1
+                        style="color: aliceblue;text-align: center;padding-left: 120px;font-family: Georgia, 'Times New Roman', Times, serif;">
+                        Product Management System</h1>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn"><i class="fa fa-ellipsis-v fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a class="nav-link" (click)="dashboard()" style="cursor: pointer;"><i class="fa fa-id-card-o"
+                                aria-hidden="true"></i>
+                            Dashboard</a>
+
+                        <a *ngIf="isLoggedIn" class="nav-link" (click)=handleLogout() style="cursor: pointer;"><i
+                                class="fa fa-user-times" aria-hidden="true"></i>Logout</a>
+
+                    </div>
+                </div>
+            </nav>
+
+
+
+            <h2 style="text-align: center;padding-top: 50px;color: rgb(247, 6, 6);font-weight: bold; ">Adding a Product
+            </h2><br><br>
+
+            <div class="container" style="padding-top: 30px;">
+
+
+                <form [formGroup]="fg" (ngSubmit)="onSubmit()">
+
+                    <div class="form-group">
+                        <label for="productname" class="col-sm-7" style="font-weight: bold;font-size: 3ch;">Product
+                            Name</label>
+                        <input type="text" placeholder="Name may be either numbers or alphabetical "
+                            [(ngModel)]="products.productname" formControlName="productname" class="col-sm-5"  
+                            style="border-radius: 5px;" [ngClass]="{ 'is-invalid': submitted && f['productname'].errors }"
+                            >
+                            <div *ngIf="submitted && f['productname'].errors" class="invalid-feedback">
+                                <div *ngIf="f['productname'].errors['required']" style="font-weight: bold;font-size: large;padding-left: 760px;">Product name is required</div>
+                                <div *ngIf="f['productname'].errors['pattern']"  style="font-weight: bold;font-size: large;padding-left: 760px;">
+                                    Product name is invalid
+                            
+                                  </div>
+                              </div>
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for="productprice" class="col-sm-7" style="font-weight: bold;font-size: 3ch;">Product
+                            Price</label>
+                        <input type="text" class="col-sm-5" placeholder="Price must be in numbers"
+                            [(ngModel)]="products.productprice" formControlName="productprice"
+                            style="border-radius: 5px;"  [ngClass]="{ 'is-invalid': submitted && f['productprice'].errors }">
+                            <div *ngIf="submitted && f['productprice'].errors" class="invalid-feedback">
+                                <div *ngIf="f['productprice'].errors['required']" style="font-weight: bold;font-size: large;padding-left: 760px;">Product Price is required</div>
+                                <div *ngIf="f['productprice'].errors['pattern']"  style="font-weight: bold;font-size: large;padding-left: 760px;">
+                                    Product price is invalid
+                            
+                                  </div>
+                              </div>
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for="productquality" class="col-sm-7" style="font-weight: bold;font-size: 3ch;">Product
+                            Rating</label>
+                        <input type="text" class="col-sm-5" placeholder="ex,.Good or 1 to 5 rating"
+                            [(ngModel)]="products.productquality" formControlName="productquality"
+                            style="border-radius: 5px;" [ngClass]="{ 'is-invalid': submitted && f['productquality'].errors }">
+                            <div *ngIf="submitted && f['productquality'].errors" class="invalid-feedback">
+                                <div *ngIf="f['productquality'].errors['required']" style="font-weight: bold;font-size: large;padding-left: 760px;">Product Quality is required</div>
+                                <div *ngIf="f['productquality'].errors['pattern']"  style="font-weight: bold;font-size: large;padding-left: 760px;">
+                                    Product Rating should be outof 1 to 5
+                            
+                                  </div>
+                              </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="date" class="col-sm-7" style="font-weight: bold;font-size: 3ch;">Date</label>
+                        <input type="date" class="col-sm-5" placeholder="ex,mm/dd/yyyy" [(ngModel)]="products.date"
+                            formControlName="date" style="border-radius: 5px;" [ngClass]="{ 'is-invalid': submitted && f['date'].errors }" required>
+                            <div *ngIf="submitted && f['date'].errors" class="invalid-feedback">
+                                <div *ngIf="f['date'].errors['required']" style="font-weight: bold;font-size: large;padding-left: 760px;">Date is required</div>
+                              </div>
+
+                    </div>
+
+
+
+                    <form>
+                        <div class="form-group" [formGroup]="fg">
+                            <div>
+                                <label for="file" class="col-sm-7"
+                                    style="font-weight: bold;font-size: 3ch;">Files</label>
+
+                                <input type="file" class="col-sm-2.5" [(ngModel)]="files.file_name"
+                                    formControlName="file" (change)="selectFile($event)" [ngClass]="{ 'is-invalid': submitted && f['file'].errors }" required>
+                                <img [src]="url" style="width: 10%;">&nbsp;&nbsp;
+                                <button type="submit" [disabled]="!selectedFiles" (click)="upload()"
+                                    style="border-radius: 4px;">Upload</button>
+                                    <div *ngIf="submitted && f['file'].errors" class="invalid-feedback">
+                                        <div *ngIf="f['file'].errors['required']" style="font-weight: bold;font-size: large;padding-left: 760px;">File is required</div>
+                                      </div>
+
+
+                            </div>
+                            <div style="padding-left: 800px;">
+                            </div>
+
+
+
+
+                        </div>
+                    </form>
+                    <div class="upload-response">
+                        <div id="demo"></div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="id" class="col-sm-7" style="font-weight: bold;font-size: 3ch;">File id</label>
+                        <input type="text" class="col-sm-5" [(ngModel)]="products.file_id" id="id1"
+                            formControlName="file_id" placeholder="Enter the generated file id"
+                            style="border-radius: 5px;" [ngClass]="{ 'is-invalid': submitted && f['file_id'].errors }">
+                            <div *ngIf="submitted && f['file_id'].errors" class="invalid-feedback">
+                                <div *ngIf="f['file_id'].errors['required']" style="font-weight: bold;font-size: large;padding-left: 760px;">File id is required</div>
+                              </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                    <!-- <div class="form-group">
+                            <label for="status" class="col-sm-8" style="font-weight: bold;font-size: large;">Status</label>
+                            <input type="text" class="col-sm-4" placeholder="ex,true or false"  
+                                        [(ngModel)]="products.status" formControlName="status" required style="border-radius: 5px;">
+                        </div>-->
+
+
+
+
+                    <!--<table>
+                
+                            <tr>
+                                <td style="font-weight: bold;color: rgb(94, 19, 19);">Product Name</td>
+                                <td><input type="text" placeholder="Name must be alphabetical" [(ngModel)]="products.productname"
+                                        formControlName="productname" required></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;color: rgb(99, 18, 18);">Product Price</td>
+                                <td><input type="text" placeholder="Price must be in numbers" [(ngModel)]="products.productprice"
+                                        formControlName="productprice" required /></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;color: rgb(99, 22, 22);">Product quality</td>
+                                <td><input type="text" placeholder="ex,.Good or 1 to 5 rating"  
+                                        [(ngModel)]="products.productquality" formControlName="productquality" required /></td>
+                            </tr>
+                
+                            <tr>
+                                <td style="font-weight: bold;color: rgb(77, 15, 15);">Date</td>
+                                <td><input type="text" placeholder="ex,mm/dd/yyyy"  
+                                        [(ngModel)]="products.date" formControlName="date" required /></td>
+                            </tr>
+                            
+                            <tr>
+                                <td style="font-weight: bold;color: rgb(102, 26, 26);">Status</td>
+                                <td><input type="text" placeholder="ex,true or false"  
+                                        [(ngModel)]="products.status" formControlName="status" required /></td>
+                            </tr>
+                
+                        </table>-->
+
+                    <div style="padding-left: 330px;">
+                        <input type="submit" class="btn" value="submit" class="btn btn-success"
+                            style="padding: 10px 80px;border-radius: 10px;">
+                        <input type="button" class="btn1" value="Cancel" class="btn btn-danger" (click)="cancel()"
+                            style="padding: 10px 80px;border-radius: 10px;">
+                    </div>
+                </form>
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+        </body>
+
+
+
+
+
+
+    </mat-sidenav-content>
+
+
+</mat-sidenav-container>
+
+</html>
